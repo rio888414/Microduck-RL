@@ -277,7 +277,7 @@ uv run play Mjlab-Velocity-Flat-MicroDuck \
 
 训练完成后，你会得到：
 
-- **每 500 轮一个 checkpoint**（`model_*.pt`）——我这次跑满 6000 轮共拿到 **29 个 checkpoint**，最新的是 `model_5999.pt`，随时可以回放任意阶段
+- **每 250 轮自动存一个 checkpoint**（`model_*.pt`）——6000 轮正式训练共 **25 个**（`model_0` 到 `model_5999`），随时可以回放任意阶段
 - **导出的 ONNX 策略**——可以直接部署到真机，或塞进浏览器沙盒
 - **TensorBoard / W\&B 日志**——完整的训练曲线
 
@@ -341,7 +341,7 @@ uv run play Mjlab-Velocity-Flat-MicroDuck \
 | 总耗时  | 约 2.5 小时（装环境 25 分钟 + 训练 2 小时 26 分钟） |
 | 硬件成本 | RTX 4090 按需，约 ¥1.4/小时           |
 | 最终效果 | 6000 轮跑满，reward 116.81，存活 966 步，摔倒率 0.42 |
-| 产物   | 29 个 checkpoint + ONNX 策略 + 完整训练日志 |
+| 产物   | 25 个 checkpoint（正式 run，另有 2 个试跑 run）+ ONNX 导出 + 完整训练日志 |
 | 踩坑数  | 5 个（均已在上文标注）                    |
 
 **最大的收获不是"训练了一只鸭子"，而是走通了一条完整的链路**：
