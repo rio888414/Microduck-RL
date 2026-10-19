@@ -241,7 +241,9 @@ tail -f /root/gpufree-data/train.log
 | 5999 轮（训练结束）  | **116.81** | 966  | 0.42          |
 
 > \* 注意：`fell_over` 这一列是**摔倒的环境个数**，不是百分比。我一开始把它误读成"摔倒率 41.67%"，后来读了源码才发现口径不对——它要和超时计数（`time_out`）相比才有意义：末次迭代两者之比是 5 : 49，即**约 9.3% 的回合以摔倒告终，90.7% 是活满 20 秒被计时器正常结束**。详见 4.2 节。
-
+![image](https://github.com/rio888414/Microduck-RL-2/blob/main/sitstand.gif)
+![image](https://github.com/rio888414/Microduck-RL-2/blob/main/sitstand.gif)
+![image](https://github.com/rio888414/Microduck-RL-2/blob/main/sitstand.gif)
 几点观察：
 
 1. **前 200 轮是"质变期"**：从完全不会走（reward 0.30）到基本会走（96.03），只用了 5 分钟。这符合课程学习的节奏——先学会站，再学会走。
