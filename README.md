@@ -240,12 +240,18 @@ tail -f /root/gpufree-data/train.log
 | 5781 轮（14:00） | 113.05     | 964  | 0.42          |
 | 5999 轮（训练结束）  | **116.81** | 966  | 0.42          |
 
-> \* 注意：`fell_over` 这一列是**摔倒的环境个数**，不是百分比。我一开始把它误读成"摔倒率 41.67%"，后来读了源码才发现口径不对——它要和超时计数（`time_out`）相比才有意义：末次迭代两者之比是 5 : 49，即**约 9.3% 的回合以摔倒告终，90.7% 是活满 20 秒被计时器正常结束**。详见 4.2 节。
-刚开始训练前：![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_0.gif)
-训练到250次，开始不容易摔倒：![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_250.gif)
-增大难度，仍然不倒：![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_5999.gif)
-几点观察：
+> \* 注意：`fell_over` 这一列是**摔倒的环境个数**，不是百分比。我一开始把它误读成"摔倒率 41.67%"，后来读了源码才发现口径不对——它要和超时计数（`time_out`）相比才有意义：末次迭代两者之比是 5 : 49，即**约 9.3% 的回合以摔倒告终，90.7% 是活满 20 秒被计时器正常结束**
 
+刚开始训练前：
+> ![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_0.gif)
+
+训练到250次，开始不容易摔倒：
+> ![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_250.gif)
+
+增大难度，仍然不倒：
+> ![image](https://github.com/rio888414/Microduck-RL/blob/main/walk_5999.gif)
+
+几点观察：
 1. **前 200 轮是"质变期"**：从完全不会走（reward 0.30）到基本会走（96.03），只用了 5 分钟。这符合课程学习的节奏——先学会站，再学会走。
 2. **之后是漫长的"精修期"**：reward 从 96 慢慢爬到 117 左右，涨幅不大但存活步数一路涨到 966 步（接近单回合上限）。鸭子已经不是"会走"，而是"走得稳"。
 3. **后期 reward 会小幅波动，不要慌**：5781 轮时回落到 113，最终又回到 116.81。PPO 自适应学习率本来就带波动，只要存活步数稳定在高位，策略就是健康的。
